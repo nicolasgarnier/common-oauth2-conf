@@ -17,6 +17,7 @@ We aim at providing the following information about OAuth 2.0 providers:
  - Provider logo URL
  - Authorization endpoint URL
  - Token endpoint URL
+ - Other non-spec endpoint URLs and a descriptions (like a token information endpoint for instance) 
  - Which OAuth 2.0 specification draft versions are supported (For instance Google supports [draft 10](https://tools.ietf.org/html/draft-ietf-oauth-v2-10) and draft 22 and above up to [final spec](https://tools.ietf.org/html/rfc6749). Some providers might still be based only on old specs.) This is purely indicative as OAuth 2.0 spec is loose clients should rely on other attributes listed to accomodate for the behavior of a particular implementation.
  - How to pass the access token to the resource server: HTTP Header (which one? What format?), Query Parameter (Which one?)
  - Supported additional Query parameters that might modify the auth flow behaviour (e.g. Force approval prompt, user hint) with a description for each (Note: common non-spec query parameters should be standardized).
@@ -25,13 +26,15 @@ We aim at providing the following information about OAuth 2.0 providers:
  - Supports refresh tokens? Uses an Access Token that never expires in time?
  - List of supported scopes and a description of each scopes
  - App registration URL (Where do I create new client credentials?)
- - Additional human readable notes about the provider. For instance How to create an app's credential.
+ - Additional human readable notes about the provider. For instance How to create an app's credential, description of additional custom flows, description of non-spec features.
  - List of Rest APIs URI endpoints accessible for each scopes
 
 
 ## Updating / Contributing
 
-If you'd like to add an OAuth provider or add/modify information about an OAuth provider please submit a GitHub Pull Request (prefered) or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues)
+If you'd like to add an OAuth provider or add/modify information about an OAuth provider please submit a GitHub Pull Request (prefered) or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues).
+
+The specification of the information provided for each OAuth 2.0 providers is not set in stone and reasonable efforts will be made to accomodate unforseen requirements or specificities of OAuth implementations as long as they can be generilized and if possible applied to the whole corpus.
 
 
 ## Format
@@ -49,9 +52,19 @@ Below is a descritpion of the format of each of these files:
 
 `config.json` is a JSON based file with the following example attributes and definition:
 
-```json
+```javascript
 {
-  "provider_name": "Google", # Name of the OAuth 2.0 Provider
-  "provider_logo_url": "" # URL to a logo of the Provider
+  "provider_name": "Google", // Name of the OAuth 2.0 Provider
+  "provider_logo_url": "", // URL to a logo of the Provider
+  "authorization_endpoint_url": "https://accounts.google.com/o/oauth2/auth",
+  "token_endpoint_url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
+  "additional_endpoints": [
+    {
+      "url": "https://www.googleapis.com/oauth2/v3/token",
+      "description": "You can use an authorized GET request to get information about the access token"
+    }
+  ],
+  
+    
 }
 ```
