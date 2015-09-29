@@ -1,4 +1,4 @@
-# OAuth 2.0 Providers
+# Common OAuth 2.0 Providers Configuration
 
 This repo lists OAuth 2.0 APIs providers and provides information about their OAuth 2.0 implementations in a machine readable format.
 
@@ -46,7 +46,9 @@ Under each of these folders the following files may be present:
  - `endpoints.json`: List of APIs endpoints that you can access for each given scopes.
  - `README.md`: Human readable information about the OAuth 2.0 Provider and some of its specificities. For instance you may describe custom flows here.
 
-Below is a descritpion of the format of each of these files:
+The specification of the information provided for each OAuth 2.0 providers is not set in stone and reasonable efforts will be made to accomodate unforseen requirements and specificities of OAuth implementations as long as they can be generilized and especially if they can be applied to the whole corpus.
+
+Below is a descritpion of the format of each of the files listed above:
 
 ### File format for `config.json`
 
@@ -61,12 +63,11 @@ Below is a descritpion of the format of each of these files:
   "additional_endpoints": [
     {
       "url": "https://www.googleapis.com/oauth2/v3/token",
-      "description": "You can use an authorized GET request to get information about the access token"
+      "supported_methods": "GET",
+      "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"
     }
   ],
   
     
 }
 ```
-
-The specification of the information provided for each OAuth 2.0 providers is not set in stone and reasonable efforts will be made to accomodate unforseen requirements and specificities of OAuth implementations as long as they can be generilized and especially if they can be applied to the whole corpus.
