@@ -2,7 +2,13 @@
 
 This repo lists OAuth 2.0 APIs providers and gives information about their OAuth 2.0 endpoints in a machine readable format.
 
-The goal is that Tools using or depending on OAuth 2.0 authorization simply use these configuration files instead of having users/developers list these manually and potentiall avoid making assumptions.
+One goal is that Tools using or depending on OAuth 2.0 will be able to simply use these configuration files instead of having users/developers manually provide the OAuth 2.0 provider settings, be able to automatically configure themselves to work with the particularities of OAuth 2.0 providers and potentially avoid having to make assumptions about particular OAuth 2.0 implementations.
+
+
+## Secondary goals
+
+One of the goals of these documents and configuration files is to identify differences in OAuth 2.0 implementations and try to find a way to abstract and generalize these differences to potentially allow for fully generic OAuth 2.0 clients.
+
 
 ## Information about OAuth 2.0 providers
 
@@ -22,9 +28,11 @@ We aim at providing the following information about OAuth 2.0 providers:
  - Additional human readable notes about the provider. For instance How to create an app's credentials.
  - List of Rest APIs URI endpoints accessible for each scopes
 
+
 ## Updating 
 
 If you'd like to add an OAuth provider or add/modify information about an OAuth provider please submit a Pull Request or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues)
+
 
 ## Format
 
