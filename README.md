@@ -20,10 +20,14 @@ We aim at providing the following information about OAuth 2.0 providers:
 
 ## Updating 
 
-Please submit a Pull Request or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues) if you'd like to add an OAuth provider or add/modify information about an OAuth provider.
+If you'd like to add an OAuth provider or add/modify information about an OAuth provider please submit a Pull Request or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues)
 
 ## Format
 
-Each OAuth 2.0 providers will have its specific folder for instance `google/`, `facebook/`, `github`...
+Each OAuth 2.0 providers will have its specific folder for instance `google/`, `facebook/`, `github/`...
 
+Under each of these folders the following files may be present:
+ - `config.json`: Information about the OAuth 2.0 provider configuration and supported features in JSON
+ - `endpoints.json`: List of 
+ - `README.md`: Human readable information about the OAuth 2.0 Provider
 
