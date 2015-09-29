@@ -34,7 +34,7 @@ We aim at providing the following information about OAuth 2.0 providers:
 
 If you'd like to add an OAuth provider or add/modify information about an OAuth provider please submit a GitHub Pull Request (prefered) or [file an issue](https://github.com/nicolasgarnier/oauth-providers/issues).
 
-The specification of the information provided for each OAuth 2.0 providers is not set in stone and reasonable efforts will be made to accomodate unforseen requirements or specificities of OAuth implementations as long as they can be generilized and if possible applied to the whole corpus.
+We're happy even if you can only contribute partial/incomplete data. For instance only providing the Authorization and Token endpoints URLs is a good start.
 
 
 ## Format
@@ -68,3 +68,5 @@ Below is a descritpion of the format of each of these files:
     
 }
 ```
+
+The specification of the information provided for each OAuth 2.0 providers is not set in stone and reasonable efforts will be made to accomodate unforseen requirements and specificities of OAuth implementations as long as they can be generilized and especially if they can be applied to the whole corpus.
