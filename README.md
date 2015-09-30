@@ -19,7 +19,6 @@ We aim at providing the following information about OAuth 2.0 providers:
  - Token endpoint URL
  - Other non-spec endpoint URLs and a descriptions (like a token information endpoint for instance) 
  - Which OAuth 2.0 specification draft versions are supported (For instance Google supports [draft 10](https://tools.ietf.org/html/draft-ietf-oauth-v2-10) and draft 22 and above up to [final spec](https://tools.ietf.org/html/rfc6749). Some providers might still be based only on old specs.) This is purely indicative as OAuth 2.0 spec is loose clients should rely on other attributes listed to accomodate for the behavior of a particular implementation.
- - How to pass the access token to the resource server: HTTP Header (which one? What format?), Query Parameter (Which one?)
  - Supported additional Query parameters that might modify the auth flow behaviour (e.g. Force approval prompt, user hint) with a description for each (Note: common non-spec query parameters should be standardized).
  - Supported Formats for exchanging auth code, refreshing tokens etc... (JSON, Form URL-encoded)
  - Supported OAuth flows. Common flows described by the OAuth 2.0 specs are: implicit, client credentials, authorization code and resource owner password). There can be other custom flows supported by the provider as the protocol allows for extensibility. We'll also describe additional/custom flows if there are any.
@@ -27,7 +26,8 @@ We aim at providing the following information about OAuth 2.0 providers:
  - List of supported scopes and a description of each scopes
  - App registration URL (Where do I create new client credentials?)
  - Additional human readable notes about the provider. For instance How to create an app's credential, description of additional custom flows, description of non-spec features.
- - List of Rest APIs URI endpoints accessible for each scopes
+ - List of Rest APIs URI endpoints (Resource servers URIs) accessible for each scopes
+ - How to pass the access token to the resource server: HTTP Header (which one? What format?), Query Parameter (Which one?)
 
 
 ## Updating / Contributing
@@ -58,16 +58,23 @@ Below is a descritpion of the format of each of the files listed above:
 {
   "provider_name": "Google", // Name of the OAuth 2.0 Provider
   "provider_logo_url": "", // URL to a logo of the Provider
-  "authorization_endpoint_url": "https://accounts.google.com/o/oauth2/auth",
+  "authorization_endpoint_url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
   "token_endpoint_url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
-  "additional_endpoints": [
+  "token_endpoint_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
+  "token_endpoint_response_content_type": "application/json", // MIME type of the data that is returned by the token endpoint
+  "additional_endpoints": [ // Other endpoints that are related to OAuth
     {
       "url": "https://www.googleapis.com/oauth2/v3/token",
       "supported_methods": "GET",
       "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"
     }
   ],
-  
-    
+  "oauth2_version": ["draft_10", "draft_22", "final"],
+  "scopes": [ // Available scopes with a description
+    {
+      "scope": "",
+      "description": ""
+    }
+  ]
 }
 ```
