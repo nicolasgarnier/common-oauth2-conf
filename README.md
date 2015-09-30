@@ -70,11 +70,20 @@ Below is a descritpion of the format of each of the files listed above:
     }
   ],
   "oauth2_version": ["draft_10", "draft_22", "final"],
-  "scopes": [ // Available scopes with a description
-    {
-      "scope": "",
-      "description": ""
-    }
-  ]
+  "scopes": { // Available scopes with a description
+    "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
+  }
+  "authorization_endpoint_query_parameters": [
+    "approval_prompt": {
+      "allowed_values": ["force"],
+      "description": "Forces display of the approval prompt. Avoids pass-through if the user has already granted access."
+    },
+    "access_type": {
+      "allowed_values": ["offline, online"],
+      "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
+    },
+  ],
+  "supported_oauth_flow": ["implicit", "client_credentials", "authorization_code", "ext_android", "ext_post_message", "ext_installed_apps", "ext_oob"],
+  "app_registration_url": "https://console.developers.google.com"
 }
 ```
