@@ -59,7 +59,7 @@ Here is an example of a rather minimal `config.json` file:
 ```javascript
 {
   "provider_name": "GitHub", // Name of the OAuth 2.0 Provider
-  "authorization_endpoint: {
+  "authorization_endpoint": {
     "url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
   }
   "token_endpoint": {
@@ -83,7 +83,7 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
 ```javascript
 {
   "provider_name": "Google", // Name of the OAuth 2.0 Provider
-  "provider_logo_url": "", // URL to a logo of the Provider
+  "provider_logo_url": "https://...", // URL to a logo of the Provider
   "authorization_endpoint": {
     "url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
     "query_parameters": [
@@ -91,13 +91,13 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
       "access_type": {"allowed_values": ["offline, online"], "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
       },
     ],
-  }
+  },
   "token_endpoint": {
     "url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
     "supported_methods": "POST", // Supported HTTP methods
     "supported_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
     "default_response_content_type": "application/json" // MIME type of the data that is returned by the token endpoint by default.
-  }
+  },
   "additional_endpoints": [ // Other endpoints that are related to OAuth
     "https://www.googleapis.com/oauth2/v3/token": {"supported_methods": "GET", "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"}
   ],
