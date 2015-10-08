@@ -83,7 +83,22 @@ Below is a descritpion of the format of each of the files listed above:
       "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
     },
   ],
-  "supported_oauth_flow": ["implicit", "client_credentials", "authorization_code", "ext_android", "ext_post_message", "ext_installed_apps", "ext_oob"],
+  "jwt_support": {
+    "supported_alg": "RS256",
+    "headers_parameters": [
+      "alg": {"mandatory": true, "allowed_values": "RS256"},
+      "typ": {"mandatory": true, "allowed_values": "JWT"}
+    ]
+    "claim_names": [
+      "iss": {"mandatory": true, "description": "The email address of the service account."} // For registered/public claim names you may add a description.
+      "scope" : {"mandatory": true, "description": "A space-delimited list of the permissions that the application requests."}, // For non-spec/private claim names you MUST add a description.
+      "aud": {"mandatory": true, "allowed_values": "https://www.googleapis.com/oauth2/v3/token"},
+      "exp": {"mandatory": true},
+      "iat": {"mandatory": true}
+    ]
+    
+  }
+  "supported_oauth_flow": ["implicit", "authorization_code", "jwt_bearer_token", "ext_android", "ext_post_message", "ext_installed_apps", "ext_authorization_code_oob"],
   "app_registration_url": "https://console.developers.google.com"
 }
 ```
