@@ -52,7 +52,30 @@ Below is a descritpion of the format of each of the files listed above:
 
 ### File format for `config.json`
 
-`config.json` is a JSON based file with the following example attributes and definition:
+`config.json` is a JSON based file containing information about the implementation and supported features of the OAuth provider. There are currently no mandatory attributes but you must re-use already defined attributes a shown below in the full example.
+
+Here is an example of a rather minimal `config.json` file:
+
+```javascript
+{
+  "provider_name": "GitHub", // Name of the OAuth 2.0 Provider
+  "authorization_endpoint_url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
+  "token_endpoint": {
+    "url": "https://github.com/login/oauth/access_token", // URL to exchange the auth code 
+    "supported_methods": "POST", // Supported HTTP methods
+    "supported_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint by default
+    "default_response_content_type": "application/x-www-form-urlencoded", // MIME type of the data that is returned by the token endpoint. It may be possible to get the response in other formats using the `Accept` header. This only specifies the default MIME Type.
+  }
+  "scopes": { // Available scopes with a description
+    "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
+    ...
+  }
+  "supported_oauth_flow": ["authorization_code"],
+  "app_registration_url": "https://console.developers.google.com"
+}
+```
+
+Here is an example of a `config.json` file for a very developed OAuth 2.0 implementation (Google):
 
 ```javascript
 {
@@ -61,7 +84,7 @@ Below is a descritpion of the format of each of the files listed above:
   "authorization_endpoint_url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
   "token_endpoint_url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
   "token_endpoint_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
-  "token_endpoint_response_content_type": "application/json", // MIME type of the data that is returned by the token endpoint
+  "default_token_endpoint_response_content_type": "application/json", // MIME type of the data that is returned by the token endpoint by default.
   "additional_endpoints": [ // Other endpoints that are related to OAuth
     "https://www.googleapis.com/oauth2/v3/token": {"supported_methods": "GET", "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"}
   ],
