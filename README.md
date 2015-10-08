@@ -63,15 +63,12 @@ Below is a descritpion of the format of each of the files listed above:
   "token_endpoint_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
   "token_endpoint_response_content_type": "application/json", // MIME type of the data that is returned by the token endpoint
   "additional_endpoints": [ // Other endpoints that are related to OAuth
-    {
-      "url": "https://www.googleapis.com/oauth2/v3/token",
-      "supported_methods": "GET",
-      "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"
-    }
+    "https://www.googleapis.com/oauth2/v3/token": {"supported_methods": "GET", "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"}
   ],
   "oauth2_version": ["draft_10", "draft_22", "final"],
   "scopes": { // Available scopes with a description
     "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
+    ...
   }
   "authorization_endpoint_query_parameters": [
     "approval_prompt": {
