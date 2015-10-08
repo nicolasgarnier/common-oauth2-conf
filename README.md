@@ -59,15 +59,18 @@ Here is an example of a rather minimal `config.json` file:
 ```javascript
 {
   "provider_name": "GitHub", // Name of the OAuth 2.0 Provider
-  "authorization_endpoint_url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
+  "authorization_endpoint: {
+    "url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
+  }
   "token_endpoint": {
     "url": "https://github.com/login/oauth/access_token", // URL to exchange the auth code 
     "supported_methods": "POST", // Supported HTTP methods
-    "supported_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint by default
+    "supported_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint by default
     "default_response_content_type": "application/x-www-form-urlencoded", // MIME type of the data that is returned by the token endpoint. It may be possible to get the response in other formats using the `Accept` header. This only specifies the default MIME Type.
   }
   "scopes": { // Available scopes with a description
-    "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
+    "": "Grants read-only access to public information (includes public user profile info, public repository info, and gists)",
+    "user": "Grants read/write access to profile info only. Note that this scope includes user:email and user:follow.",
     ...
   }
   "supported_oauth_flow": ["authorization_code"],
@@ -75,16 +78,26 @@ Here is an example of a rather minimal `config.json` file:
 }
 ```
 
-Here is an example of a `config.json` file for a very developed OAuth 2.0 implementation (Google):
+Here is an example of a `config.json` file for an almost exhaustively developed OAuth 2.0 implementation (Google):
 
 ```javascript
 {
   "provider_name": "Google", // Name of the OAuth 2.0 Provider
   "provider_logo_url": "", // URL to a logo of the Provider
-  "authorization_endpoint_url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
-  "token_endpoint_url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
-  "token_endpoint_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
-  "default_token_endpoint_response_content_type": "application/json", // MIME type of the data that is returned by the token endpoint by default.
+  "authorization_endpoint": {
+    "url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
+    "query_parameters": [
+      "approval_prompt": {"allowed_values": ["force"], "description": "Forces display of the approval prompt. Avoids pass-through if the user has already granted access."},
+      "access_type": {"allowed_values": ["offline, online"], "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
+      },
+    ],
+  }
+  "token_endpoint": {
+    "url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
+    "supported_methods": "POST", // Supported HTTP methods
+    "supported_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
+    "default_response_content_type": "application/json" // MIME type of the data that is returned by the token endpoint by default.
+  }
   "additional_endpoints": [ // Other endpoints that are related to OAuth
     "https://www.googleapis.com/oauth2/v3/token": {"supported_methods": "GET", "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"}
   ],
@@ -92,23 +105,13 @@ Here is an example of a `config.json` file for a very developed OAuth 2.0 implem
   "scopes": { // Available scopes with a description
     "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
     ...
-  }
-  "authorization_endpoint_query_parameters": [
-    "approval_prompt": {
-      "allowed_values": ["force"],
-      "description": "Forces display of the approval prompt. Avoids pass-through if the user has already granted access."
-    },
-    "access_type": {
-      "allowed_values": ["offline, online"],
-      "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
-    },
-  ],
+  },
   "jwt_support": {
     "supported_alg": "RS256",
     "headers_parameters": [
       "alg": {"mandatory": true, "allowed_values": "RS256"},
       "typ": {"mandatory": true, "allowed_values": "JWT"}
-    ]
+    ],
     "claim_names": [
       "iss": {"mandatory": true, "description": "The email address of the service account."} // For registered/public claim names you may add a description.
       "scope" : {"mandatory": true, "description": "A space-delimited list of the permissions that the application requests."}, // For non-spec/private claim names you MUST add a description.
@@ -116,8 +119,7 @@ Here is an example of a `config.json` file for a very developed OAuth 2.0 implem
       "exp": {"mandatory": true},
       "iat": {"mandatory": true}
     ]
-    
-  }
+  },
   "supported_oauth_flow": ["implicit", "authorization_code", "jwt_bearer_token", "ext_android", "ext_post_message", "ext_installed_apps", "ext_authorization_code_oob"],
   "app_registration_url": "https://console.developers.google.com"
 }
