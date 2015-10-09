@@ -61,15 +61,15 @@ Here is an example of a rather minimal `config.json` file:
   "provider_name": "GitHub", // Name of the OAuth 2.0 Provider
   "authorization_endpoint": {
     "url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
-  }
+  },
   "token_endpoint": {
     "url": "https://github.com/login/oauth/access_token", // URL to exchange the auth code
-  }
+  },
   "scopes": { // Available scopes with a description
     "": "Grants read-only access to public information (includes public user profile info, public repository info, and gists)", // Some providers allow an empty scope.
     "user": "Grants read/write access to profile info only. Note that this scope includes user:email and user:follow.",
     ...
-  }
+  },
   "supported_oauth_flow": ["authorization_code"],
   "app_registration_url": "https://github.com/settings/applications"
 }
