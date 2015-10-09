@@ -63,10 +63,7 @@ Here is an example of a rather minimal `config.json` file:
     "url": "https://github.com/login/oauth/authorize", // URL of the Authroization endpoint
   }
   "token_endpoint": {
-    "url": "https://github.com/login/oauth/access_token", // URL to exchange the auth code 
-    "supported_methods": "POST", // Supported HTTP methods
-    "supported_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint by default
-    "default_response_content_type": "application/x-www-form-urlencoded", // MIME type of the data that is returned by the token endpoint. It may be possible to get the response in other formats using the `Accept` header. This only specifies the default MIME Type.
+    "url": "https://github.com/login/oauth/access_token", // URL to exchange the auth code
   }
   "scopes": { // Available scopes with a description
     "": "Grants read-only access to public information (includes public user profile info, public repository info, and gists)", // Some providers allow an empty scope.
@@ -94,8 +91,8 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
   },
   "token_endpoint": {
     "url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
-    "supported_methods": "POST", // Supported HTTP methods
-    "supported_request_content_type": "application/x-www-form-urlencoded", // MIME type of the data that can be passed in the body of requests to the token endpoint
+    "supported_methods": ["POST"], // Supported HTTP methods
+    "prefered_request_content_type": "application/x-www-form-urlencoded", // Prefered MIME type of the data that can be passed in the body of requests to the token endpoint.
     "default_response_content_type": "application/json" // MIME type of the data that is returned by the token endpoint by default.
   },
   "additional_endpoints": [ // Other endpoints that are related to OAuth
@@ -109,13 +106,13 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
   "jwt_support": {
     "supported_alg": "RS256",
     "headers_parameters": [
-      "alg": {"mandatory": true, "allowed_values": "RS256"},
-      "typ": {"mandatory": true, "allowed_values": "JWT"}
+      "alg": {"mandatory": true, "allowed_values": ["RS256"]},
+      "typ": {"mandatory": true, "allowed_values": ["JWT"]}
     ],
     "claim_names": [
-      "iss": {"mandatory": true, "description": "The email address of the service account."} // For registered/public claim names you may add a description.
+      "iss": {"mandatory": true, "description": "The email address of the service account."}, // For registered/public claim names you may add a description.
       "scope" : {"mandatory": true, "description": "A space-delimited list of the permissions that the application requests."}, // For non-spec/private claim names you MUST add a description.
-      "aud": {"mandatory": true, "allowed_values": "https://www.googleapis.com/oauth2/v3/token"},
+      "aud": {"mandatory": true, "allowed_values": ["https://www.googleapis.com/oauth2/v3/token"]},
       "exp": {"mandatory": true},
       "iat": {"mandatory": true}
     ]
