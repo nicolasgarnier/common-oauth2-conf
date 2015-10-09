@@ -24,7 +24,7 @@
           "type": "object",
           "patternProperties": {
             ".+": {
-              "description": "Details of a custom query parameter",
+              "description": "Details of a custom query parameter. The name of the property is the name of the query parameter.",
               "type": "object",
               "properties": {
                 "allowed_values": {
