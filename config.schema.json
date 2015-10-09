@@ -1,51 +1,51 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "OAuth 2.0 Provider Configuration",
-	"type": "object",
-	"properties": {
-		"provider_name": {
-			"description": "Name of the OAuth 2.0 Provider",
-			"type": "string"
-		},
-		"provider_logo_url": {
-			"description": "URL to a logo of the Provider",
-			"type": "string"
-		},
-		"authorization_endpoint": {
-			"description": "Details about the Authorization Endpoint",
-			"type": "object",
-			"properties": {
-	  	  "url": {
-			    "description": "URL of the Authroization Endpoint",
-			    "type": "string"
-		    },
-	  	  "query_parameters": {
-			    "description": "Additional custom/non-spec query parameters",
-			    "type": "object",
-			  	"patternProperties": {
+  "title": "OAuth 2.0 Provider Configuration",
+  "type": "object",
+  "properties": {
+    "provider_name": {
+      "description": "Name of the OAuth 2.0 Provider",
+      "type": "string"
+    },
+    "provider_logo_url": {
+      "description": "URL to a logo of the Provider",
+      "type": "string"
+    },
+    "authorization_endpoint": {
+      "description": "Details about the Authorization Endpoint",
+      "type": "object",
+      "properties": {
+        "url": {
+          "description": "URL of the Authroization Endpoint",
+          "type": "string"
+        },
+        "query_parameters": {
+          "description": "Additional custom/non-spec query parameters",
+          "type": "object",
+          "patternProperties": {
             ".+": {
               "description": "Details of a custom query parameter",
-			        "type": "object",
-			        "properties": {
-	  	          "allowed_values": {
-			            "description": "Values allowed ot be used for this parameter",
-			            "type": "array",
-			            "items": { "type": "string" }
-		            },
-	  	          "description": {
-			            "description": "Description of the parameter and its effects",
-			            "type": "string"
-		            }
-		          }
+              "type": "object",
+              "properties": {
+                "allowed_values": {
+                  "description": "Values allowed ot be used for this parameter",
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "description": {
+                  "description": "Description of the parameter and its effects",
+                  "type": "string"
+                }
+              }
             }
           },
           "additionalProperties": false
-		    }
-		  },
-	  	"required": ["url"]
-		}
-	},
-	"required": ["provider_name", "authorization_endpoint"]
+        }
+      },
+      "required": ["url"]
+    }
+  },
+  "required": ["provider_name", "authorization_endpoint"]
 }
 
 ===== atttibutes to define =====
