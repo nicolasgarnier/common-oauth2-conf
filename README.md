@@ -52,7 +52,7 @@ Below is a descritpion of the format of each of the files listed above:
 
 ### File format for `config.json`
 
-`config.json` is a JSON based file containing information about the implementation and supported features of the OAuth provider. There are currently no mandatory attributes but you must re-use already defined attributes a shown below in the full example.
+`config.json` is a JSON based file containing information about the implementation and supported features of the OAuth provider. Except for `provider_name` and `authorization_endpoint.url` all attributes are optionnal. Check the [JSON Schema for the `config.json`](config.schema.json) file for a formal description or simply have a look at the examples below.
 
 Here is an example of a rather minimal `config.json` file:
 
@@ -69,7 +69,7 @@ Here is an example of a rather minimal `config.json` file:
     "default_response_content_type": "application/x-www-form-urlencoded", // MIME type of the data that is returned by the token endpoint. It may be possible to get the response in other formats using the `Accept` header. This only specifies the default MIME Type.
   }
   "scopes": { // Available scopes with a description
-    "": "Grants read-only access to public information (includes public user profile info, public repository info, and gists)",
+    "": "Grants read-only access to public information (includes public user profile info, public repository info, and gists)", // Some providers allow an empty scope.
     "user": "Grants read/write access to profile info only. Note that this scope includes user:email and user:follow.",
     ...
   }
