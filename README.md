@@ -83,11 +83,11 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
   "provider_logo_url": "https://...", // URL to a logo of the Provider
   "authorization_endpoint": {
     "url": "https://accounts.google.com/o/oauth2/auth", // URL of the Authroization endpoint
-    "query_parameters": [
+    "query_parameters": {
       "approval_prompt": {"allowed_values": ["force"], "description": "Forces display of the approval prompt. Avoids pass-through if the user has already granted access."},
-      "access_type": {"allowed_values": ["offline, online"], "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."
-      },
-    ],
+      "access_type": {"allowed_values": ["offline, online"], "description": "If the value is 'offline' Will grant a refresh token in the authorization code flow. 'online' will only grant you an access token in the authorization code flow."}
+      ...
+    },
   },
   "token_endpoint": {
     "url": "https://www.googleapis.com/oauth2/v3/token", // URL to exchange the auth code 
@@ -95,9 +95,9 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
     "prefered_request_content_type": "application/x-www-form-urlencoded", // Prefered MIME type of the data that can be passed in the body of requests to the token endpoint.
     "default_response_content_type": "application/json" // MIME type of the data that is returned by the token endpoint by default.
   },
-  "additional_endpoints": [ // Other endpoints that are related to OAuth
+  "additional_endpoints": { // Other endpoints that are related to OAuth
     "https://www.googleapis.com/oauth2/v3/token": {"supported_methods": "GET", "description": "Returns the information about the access token. You have to provide an Access Token as a query parameter"}
-  ],
+  },
   "oauth2_version": ["draft_10", "draft_22", "final"],
   "scopes": { // Available scopes with a description
     "https://spreadsheets.google.com/feeds/": "Manage your spreadsheets."
@@ -105,17 +105,18 @@ Here is an example of a `config.json` file for an almost exhaustively developed 
   },
   "jwt_support": {
     "supported_alg": "RS256",
-    "headers_parameters": [
+    "headers_parameters": {
       "alg": {"mandatory": true, "allowed_values": ["RS256"]},
       "typ": {"mandatory": true, "allowed_values": ["JWT"]}
-    ],
-    "claim_names": [
+    },
+    "claim_names": {
       "iss": {"mandatory": true, "description": "The email address of the service account."}, // For registered/public claim names you may add a description.
       "scope" : {"mandatory": true, "description": "A space-delimited list of the permissions that the application requests."}, // For non-spec/private claim names you MUST add a description.
       "aud": {"mandatory": true, "allowed_values": ["https://www.googleapis.com/oauth2/v3/token"]},
       "exp": {"mandatory": true},
-      "iat": {"mandatory": true}
-    ]
+      "iat": {"mandatory": true},
+      "sub": {"mandatory": false, "description": "The email address of the user for which the application is requesting delegated access. This can be used in the case of a Google Apps domain application that has been granted delegated access rights."},
+    }
   },
   "supported_oauth_flow": ["implicit", "authorization_code", "jwt_bearer_token", "ext_android", "ext_post_message", "ext_installed_apps", "ext_authorization_code_oob"],
   "app_registration_url": "https://console.developers.google.com"
