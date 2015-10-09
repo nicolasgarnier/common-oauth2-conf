@@ -71,7 +71,7 @@ Here is an example of a rather minimal `config.json` file:
     ...
   }
   "supported_oauth_flow": ["authorization_code"],
-  "app_registration_url": "https://console.developers.google.com"
+  "app_registration_url": "https://github.com/settings/applications"
 }
 ```
 
