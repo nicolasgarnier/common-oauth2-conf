@@ -5,7 +5,7 @@ This repo lists OAuth 2.0 APIs providers and provides information about their OA
 
 ## Goals
 
-We're hoping that Tools using or depending on OAuth 2.0 will be able to simply use these configuration files instead of having users/developers manually provide the OAuth 2.0 provider settings, be able to automatically configure themselves to work with the particularities of OAuth 2.0 providers and potentially avoid having to make assumptions about particular OAuth 2.0 implementations.
+We're hoping that Tools using or depending on OAuth 2.0 will be able to simply use these configuration files instead of having users/developers manually provide the OAuth 2.0 provider settings, be able to automatically configure themselves to work with the particularities of OAuth 2.0 providers and potentially avoid having to make assumptions about particular OAuth 2.0 implementations. 
 
 One of the goals of these documents and configuration files is to identify differences and specificities of each OAuth 2.0 implementations and try to find a way to abstract and generalize these differences to potentially allow for fully generic OAuth 2.0 clients.
 
