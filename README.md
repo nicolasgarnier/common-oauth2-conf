@@ -1,6 +1,6 @@
 # Common OAuth 2.0 Providers Configuration
 
-This repo lists OAuth 2.0 APIs providers and provides information about their OAuth 2.0 implementations in a machine readable format. 
+This repo lists OAuth 2.0 APIs providers and provides information about their OAuth 2.0 implementations in a machine readable format.
 
 
 ## Goals
